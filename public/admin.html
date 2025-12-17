@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - EduPay</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
+                    </svg>
+                    <h2>EduPay</h2>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" />
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-section="approvals">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                    </svg>
+                    <span>Approvals</span>
+                    <span class="badge" id="pendingBadge"
+                        style="background: var(--status-pending); color: white; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; margin-left: auto;">0</span>
+                </a>
+                <a href="#" class="nav-item" data-section="payouts">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
+                    </svg>
+                    <span>Payouts</span>
+                </a>
+                <a href="#" class="nav-item" data-section="disputes">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                    </svg>
+                    <span>Disputes</span>
+                </a>
+                <a href="#" class="nav-item" data-section="reports">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                    </svg>
+                    <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-section="activity">
+                    <svg viewBox="0 0 24 24">
+                        <path
+                            d="M13 3c-4.97 0-9 4.03-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42C8.27 19.99 10.51 21 13 21c4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z" />
+                    </svg>
+                    <span>Activity Log</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">MK</div>
+                    <div class="user-details">
+                        <div class="user-name" id="userName">Meera Krishnan</div>
+                        <div class="user-role">Administrator</div>
+                    </div>
+                    <button class="logout-btn" onclick="logout()">
+                        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                            <path
+                                d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="page-title">
+                    <h1>Admin Dashboard</h1>
+                    <p>Manage sessions, approve payments, and resolve disputes</p>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-primary" onclick="generateReport()">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path
+                                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+                        </svg>
+                        Generate Report
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-body">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon yellow">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="pendingApproval">0</div>
+                        <div class="stat-label">Pending Approvals</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="professorCount">0</div>
+                        <div class="stat-label">Active Professors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon sage">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value currency" id="pendingPayments">₹0</div>
+                        <div class="stat-label">Pending Payouts</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <path
+                                        d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="stat-value currency" id="paidThisMonth">₹0</div>
+                        <div class="stat-label">Paid This Month</div>
+                    </div>
+                </div>
+
+                <!-- Two Column Layout -->
+                <div class="grid-2">
+                    <!-- Pending Approvals -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Pending Session Approvals</h3>
+                            <span class="status-badge pending" id="pendingCount">0 pending</span>
+                        </div>
+                        <div class="card-body no-padding">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Professor</th>
+                                            <th>Date</th>
+                                            <th>Topic</th>
+                                            <th>Amount</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pendingSessionsBody">
+                                        <!-- Sessions loaded dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payout Summary -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Payout Summary by Professor</h3>
+                        </div>
+                        <div class="card-body no-padding">
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Professor</th>
+                                            <th>Sessions</th>
+                                            <th>Hours</th>
+                                            <th>Amount Due</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="payoutSummaryBody">
+                                        <!-- Summary loaded dynamically -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Log -->
+                <div class="card" style="margin-top: 24px;">
+                    <div class="card-header">
+                        <h3>Recent Activity</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="activity-list" id="activityList">
+                            <!-- Activity items loaded dynamically -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Reject Modal -->
+    <div class="modal-overlay" id="rejectModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Reject Session</h3>
+                <button class="modal-close" onclick="closeRejectModal()">
+                    <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+                        <path
+                            d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z" />
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="rejectReason">Reason for rejection</label>
+                    <textarea id="rejectReason" class="form-input" rows="4"
+                        placeholder="Please provide a reason for rejecting this session..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeRejectModal()">Cancel</button>
+                <button class="btn btn-danger" onclick="confirmReject()">Reject Session</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // Check authentication
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || user.role !== 'admin') {
+            window.location.href = '/';
+        }
+
+        // Update user info
+        document.getElementById('userName').textContent = user?.name || 'Admin';
+        document.getElementById('userAvatar').textContent = user?.name?.split(' ').map(n => n[0]).join('') || 'A';
+
+        let rejectingSessionId = null;
+
+        // Navigation
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+            });
+        });
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('user');
+            window.location.href = '/';
+        }
+
+        // Format currency
+        function formatCurrency(amount) {
+            return '₹' + new Intl.NumberFormat('en-IN').format(amount || 0);
+        }
+
+        // Format date
+        function formatDate(dateStr) {
+            if (!dateStr) return '-';
+            const date = new Date(dateStr);
+            return date.toLocaleDateString('en-IN', { month: 'short', day: 'numeric' });
+        }
+
+        // Format time ago
+        function timeAgo(dateStr) {
+            const date = new Date(dateStr);
+            const now = new Date();
+            const seconds = Math.floor((now - date) / 1000);
+
+            if (seconds < 60) return 'Just now';
+            if (seconds < 3600) return `${Math.floor(seconds / 60)} minutes ago`;
+            if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
+            return `${Math.floor(seconds / 86400)} days ago`;
+        }
+
+        // Load dashboard data
+        async function loadDashboard() {
+            try {
+                // Load admin stats
+                const statsRes = await fetch('/api/stats/admin');
+                const stats = await statsRes.json();
+
+                document.getElementById('pendingApproval').textContent = stats.pending_approval || 0;
+                document.getElementById('professorCount').textContent = stats.professor_count || 0;
+                document.getElementById('pendingPayments').textContent = formatCurrency(stats.pending_payments);
+                document.getElementById('paidThisMonth').textContent = formatCurrency(stats.paid_this_month);
+                document.getElementById('pendingBadge').textContent = stats.pending_approval || 0;
+                document.getElementById('pendingCount').textContent = `${stats.pending_approval || 0} pending`;
+
+                // Load pending sessions
+                const pendingRes = await fetch('/api/sessions/pending');
+                const pendingSessions = await pendingRes.json();
+                renderPendingSessions(pendingSessions);
+
+                // Load payout summary
+                const summaryRes = await fetch('/api/payments/summary');
+                const summary = await summaryRes.json();
+                renderPayoutSummary(summary);
+
+                // Load activity log
+                const activityRes = await fetch('/api/activity');
+                const activities = await activityRes.json();
+                renderActivityLog(activities);
+
+            } catch (error) {
+                console.error('Error loading dashboard:', error);
+                showToast('Error loading dashboard data', 'error');
+            }
+        }
+
+        // Render pending sessions
+        function renderPendingSessions(sessions) {
+            const tbody = document.getElementById('pendingSessionsBody');
+
+            if (sessions.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 24px; color: var(--text-muted);">
+                            <svg viewBox="0 0 24 24" width="48" height="48" fill="var(--border-medium)" style="margin-bottom: 8px;">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            <p>All sessions approved!</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = sessions.map(session => `
+                <tr>
+                    <td>
+                        <strong>${session.professor_name}</strong>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">${session.department}</div>
+                    </td>
+                    <td>${formatDate(session.date)}</td>
+                    <td>${session.topic}</td>
+                    <td class="currency">${formatCurrency(session.calculated_amount)}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="action-btn approve" onclick="approveSession(${session.id})" title="Approve">
+                                <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/></svg>
+                            </button>
+                            <button class="action-btn reject" onclick="openRejectModal(${session.id})" title="Reject">
+                                <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Render payout summary
+        function renderPayoutSummary(summary) {
+            const tbody = document.getElementById('payoutSummaryBody');
+
+            if (summary.length === 0 || summary.every(s => !s.approved_sessions)) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" style="text-align: center; padding: 24px; color: var(--text-muted);">
+                            No pending payouts
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = summary.filter(s => s.total_amount > 0).map(prof => `
+                <tr>
+                    <td>
+                        <strong>${prof.professor_name}</strong>
+                        <div style="font-size: 0.75rem; color: var(--text-muted);">${prof.department || ''}</div>
+                    </td>
+                    <td>${prof.approved_sessions || 0}</td>
+                    <td>${prof.total_hours || 0} hrs</td>
+                    <td class="currency currency-lg">${formatCurrency(prof.total_amount)}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Render activity log
+        function renderActivityLog(activities) {
+            const container = document.getElementById('activityList');
+
+            if (activities.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: var(--text-muted);">No recent activity</p>';
+                return;
+            }
+
+            const actionIcons = {
+                'approved_session': '<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>',
+                'rejected_session': '<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/>',
+                'created_payment': '<path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21"/>',
+                'processed_payment': '<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>'
+            };
+
+            container.innerHTML = activities.slice(0, 8).map(activity => `
+                <div class="activity-item">
+                    <div class="activity-icon">
+                        <svg viewBox="0 0 24 24">${actionIcons[activity.action] || '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'}</svg>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-text">
+                            <strong>${activity.user_name || 'System'}</strong> ${activity.action.replace(/_/g, ' ')}
+                        </div>
+                        <div class="activity-time">${timeAgo(activity.created_at)}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Approve session
+        async function approveSession(sessionId) {
+            try {
+                const res = await fetch(`/api/sessions/${sessionId}/approve`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminId: user.id })
+                });
+
+                if (res.ok) {
+                    showToast('Session approved successfully', 'success');
+                    loadDashboard();
+                } else {
+                    showToast('Failed to approve session', 'error');
+                }
+            } catch (error) {
+                showToast('Error approving session', 'error');
+            }
+        }
+
+        // Open reject modal
+        function openRejectModal(sessionId) {
+            rejectingSessionId = sessionId;
+            document.getElementById('rejectModal').classList.add('show');
+        }
+
+        // Close reject modal
+        function closeRejectModal() {
+            rejectingSessionId = null;
+            document.getElementById('rejectReason').value = '';
+            document.getElementById('rejectModal').classList.remove('show');
+        }
+
+        // Confirm reject
+        async function confirmReject() {
+            const reason = document.getElementById('rejectReason').value;
+
+            if (!reason.trim()) {
+                showToast('Please provide a reason for rejection', 'error');
+                return;
+            }
+
+            try {
+                const res = await fetch(`/api/sessions/${rejectingSessionId}/reject`, {
+                    method: 'PATCH',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ adminId: user.id, reason })
+                });
+
+                if (res.ok) {
+                    showToast('Session rejected', 'success');
+                    closeRejectModal();
+                    loadDashboard();
+                } else {
+                    showToast('Failed to reject session', 'error');
+                }
+            } catch (error) {
+                showToast('Error rejecting session', 'error');
+            }
+        }
+
+        // Generate report
+        function generateReport() {
+            showToast('Generating monthly report...', 'success');
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+                    ${type === 'success'
+                    ? '<path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>'
+                    : '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>'}
+                </svg>
+                <span>${message}</span>
+            `;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Initialize
+        loadDashboard();
+    </script>
+</body>
+
+</html>

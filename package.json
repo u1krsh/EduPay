@@ -1,0 +1,33 @@
+{
+  "name": "professor-payment-platform",
+  "version": "2.0.0",
+  "description": "EduPay - Payment transparency platform for freelance professors with advanced features",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "reset-db": "node -e \"require('fs').unlinkSync('platform.db')\" && npm start"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "sql.js": "^1.10.3",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "education",
+    "payment",
+    "professor",
+    "freelance",
+    "platform"
+  ],
+  "license": "MIT"
+}
